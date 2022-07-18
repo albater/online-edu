@@ -11,7 +11,8 @@ import org.springframework.context.annotation.Configuration;
  * @date 2022/7/17 23:01
  * @Description
  */
-@Configuration
+//@Configuration
+// 建议写在service-base中，省的每个业务都要添加此配置
 public class MpConfig {
 
     @Bean

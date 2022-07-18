@@ -18,6 +18,9 @@ spring:
   # 关闭spring banner
   main:
     banner-mode: off
+  # 设置多环境启动
+  profiles:
+    active: dev
 
 # mybatis-plus日志开启
 mybatis-plus:
@@ -25,3 +28,8 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     banner: false  # 取消mp的banner图标
+
+# 日志配置
+logging:
+  level:
+    root: info
