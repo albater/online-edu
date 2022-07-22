@@ -1,0 +1,31 @@
+server:
+  port: 8120 #配置启动端口
+
+spring:
+  application:
+    # 配置服务名
+    name: guli-oss
+  profiles:
+    # 配置启动环境
+    active: dev
+
+  servlet:
+    multipart:
+      max-file-size: 50MB # 单个文件上传大小限制
+      max-request-size: 100MB # 多个文件上传大小限制
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: UTC  # GMT+8
+
+
+  main:
+    banner-mode: off # 关闭bunner
+
+# 配置阿里云OSS服务路径
+aliyun:
+  oss:
+    endpoint: https://oss-cn-shanghai.aliyuncs.com
+    accessKeyId: LTAI5tNiKMbQnYJjGEPa5rcs
+    accessKeySecret: TvIqoiPH9y3jGZBGemcSbsTbuOyX63
+    bucketName: xxguli-file

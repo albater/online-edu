@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @Description
  */
 @SpringBootApplication
-//@MapperScan("com.service.edu.mapper")
+@MapperScan("com.service.edu.mapper")
 @ComponentScan("com.service")
 public class ServiceEduApplication {
     public static void main(String[] args) {
