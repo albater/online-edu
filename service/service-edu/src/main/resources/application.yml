@@ -21,6 +21,15 @@ spring:
   # 设置多环境启动
   profiles:
     active: dev
+  cloud:
+    # 配置nacos
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  redis:
+    database: 0
+    host: 192.168.6.100
+    port: 6379
 
 # mybatis-plus日志开启
 mybatis-plus:
@@ -33,3 +42,4 @@ mybatis-plus:
 logging:
   level:
     root: info
+    com.service.edu.feign.OssClient: debug # 配置日志级别为debug

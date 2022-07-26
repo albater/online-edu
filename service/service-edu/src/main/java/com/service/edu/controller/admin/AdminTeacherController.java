@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.service.base.result.R;
 import com.service.edu.entity.Teacher;
 import com.service.edu.entity.query.TeacherQuery;
+import com.service.edu.feign.OssClient;
 import com.service.edu.service.TeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,7 +35,14 @@ import java.util.List;
 public class AdminTeacherController {
     @Autowired
     private TeacherService teacherService;
-
+    @Autowired
+    private OssClient ossClient;
+    @ApiOperation("测试服务调用")
+    @GetMapping("/test")
+    public R test(){
+        ossClient.test();
+        return R.ok();
+    }
 
     @ApiOperation(value = "批量删除")
     @DeleteMapping("/batchDel")

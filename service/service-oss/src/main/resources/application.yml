@@ -4,11 +4,10 @@ server:
 spring:
   application:
     # 配置服务名
-    name: guli-oss
+    name: service-oss
   profiles:
     # 配置启动环境
     active: dev
-
   servlet:
     multipart:
       max-file-size: 50MB # 单个文件上传大小限制
@@ -21,6 +20,10 @@ spring:
 
   main:
     banner-mode: off # 关闭bunner
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
 
 # 配置阿里云OSS服务路径
 aliyun:

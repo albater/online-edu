@@ -1,5 +1,6 @@
 package com.service.base.handle;
 
+import com.service.base.exception.GlobalException;
 import com.service.base.result.R;
 import com.service.base.result.ResultCodeEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice //异常处理时 起作用 返回值为json格式
 @Slf4j
 public class GlobalExceptionHandler {
+    //设置自定义异常处理类
+    @ExceptionHandler(value = GlobalException.class)
+    public R exception(GlobalException e){
+        log.error("{}",ExceptionUtils.getStackTrace(e));
+        return R.error().message(e.getMessage()).code(e.getCode());
+    }
     //设置最大异常处理器
     @ExceptionHandler(value = Exception.class)
     public R exception(Exception e){

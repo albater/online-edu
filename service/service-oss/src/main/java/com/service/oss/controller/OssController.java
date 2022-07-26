@@ -6,6 +6,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,9 +21,16 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @CrossOrigin
 @RequestMapping("/admin/oss")
+@Slf4j
 public class OssController {
     @Autowired
     OssService ossService;
+    @ApiOperation(value = "测试")
+    @GetMapping("/test")
+    public R test(){
+        log.info("oss test被调用。。");
+        return R.ok();
+    }
 
     @ApiOperation(value = "单个文件上传")
     @PostMapping("/upload")

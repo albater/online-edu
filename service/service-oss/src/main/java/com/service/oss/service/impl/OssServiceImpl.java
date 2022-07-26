@@ -3,8 +3,11 @@ package com.service.oss.service.impl;
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
+import com.service.base.exception.GlobalException;
+import com.service.base.result.ResultCodeEnum;
 import com.service.oss.config.OssProperties;
 import com.service.oss.service.OssService;
+import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -23,10 +26,18 @@ import java.util.UUID;
  * @Description
  */
 @Service
+@Slf4j
 public class OssServiceImpl implements OssService {
     @Autowired
     private OssProperties ossProperties;
-
+    /**
+     * @param file 文件
+    * @param module 目录
+     * @description: 根据目录上传文件
+     * @return: java.lang.String
+     * @author: alpha
+     * @date: 2022/7/23 9:48
+     */
     @Override
     public String upload(MultipartFile file, String module) {
 
@@ -56,7 +67,8 @@ public class OssServiceImpl implements OssService {
             return uploadPath;
         } catch (Exception ce) {
             System.out.println("Error Message:" + ce.getMessage());
-            throw new RuntimeException(ce);
+            log.error(ce.getMessage());
+            throw new GlobalException(ResultCodeEnum.FILE_UPLOAD_ERROR);
         } finally {
             if (ossClient != null) {
                 ossClient.shutdown();

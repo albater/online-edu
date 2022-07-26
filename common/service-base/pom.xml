@@ -17,6 +17,13 @@
     </properties>
 
     <dependencies>
+
+        <!--easyexcel-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>2.1.7</version>
+        </dependency>
         <dependency>
             <groupId>com.atguigu</groupId>
             <artifactId>common-util</artifactId>
@@ -43,6 +50,12 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-generator</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.baomidou</groupId>
+                    <artifactId>mybatis-plus-extension</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- velocity 模板引擎, Mybatis Plus 代码生成器需要 -->
         <dependency>
