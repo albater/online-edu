@@ -1,13 +1,13 @@
 package com.service.edu.controller.admin;
 
 import com.service.base.result.R;
+import com.service.edu.entity.Subject;
 import com.service.edu.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * @author alpha
@@ -28,5 +28,11 @@ public class AdminSubjectController {
     public R importSubjects(MultipartFile subjects){
         subjectService.importSubjects(subjects);
         return R.ok();
+    }
+
+    @GetMapping("/getNestedSubjects")
+    public R getNestedSubject(){
+        List<Subject> pSubject = subjectService.getNestedSubjects();
+        return R.ok().data("items",pSubject);
     }
 }

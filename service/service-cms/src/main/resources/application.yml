@@ -1,0 +1,50 @@
+server:
+  port: 8160 #配置启动端口
+
+spring:
+  application:
+    # 配置服务名
+    name: service-cms
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  profiles:
+    # 配置启动环境
+    active: dev
+  main:
+    banner-mode: off # 关闭bunner
+  cloud:
+    # nacos配置
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  redis:
+    port: 6379
+    host: 192.168.6.100
+
+# 配置阿里云sms服务参数
+aliyun:
+  sms:
+    host: "http://dingxin.market.alicloudapi.com"
+    path: "/dx/sendSms"
+    method: "POST"
+    appcode: "8e45699f00ff4bdbb807664045acd813"
+    tplId: "TP1711063"
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:com/service/*/mapper/xml/*.xml
+
+logging:
+  level:
+    root: info
+
+ribbon:
+  # 超时配置：
+  ConnectTimeout: 5000
+  ReadTimeout: 5000
+  # 重试次数配置：
+  MaxAutoRetries: 0 # 同一实例最大重试次数，不包括首次调用，默认0
+  MaxAutoRetriesNextServer: 1 # 重试其他实例的最大重试次数，不包括首次所选的server，默认1

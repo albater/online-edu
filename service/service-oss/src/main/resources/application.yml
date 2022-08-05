@@ -29,6 +29,6 @@ spring:
 aliyun:
   oss:
     endpoint: https://oss-cn-shanghai.aliyuncs.com
-    accessKeyId: LTAI5tNiKMbQnYJjGEPa5rcs
-    accessKeySecret: TvIqoiPH9y3jGZBGemcSbsTbuOyX63
+    accessKeyId: your accessKeyId
+    accessKeySecret: your accessKeySecret
     bucketName: xxguli-file

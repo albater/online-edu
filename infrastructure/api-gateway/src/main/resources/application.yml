@@ -1,0 +1,29 @@
+server:
+  port: 9110
+spring:
+  application:
+    name: api-gateway
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+#    gateway
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: service-edu
+          uri: lb://service-edu
+          predicates:
+            - Path=/**/edu/**,/user/**
+        - id: service-ucenter
+          uri: lb://service-ucenter
+          predicates:
+            - Path=/**/ucenter/**
+        - id: service-vod
+          uri: lb://service-vod
+          predicates:
+            - Path=/**/vod/**

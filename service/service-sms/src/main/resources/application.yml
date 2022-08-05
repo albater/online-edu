@@ -1,0 +1,33 @@
+server:
+  port: 8150 #配置启动端口
+
+spring:
+  application:
+    # 配置服务名
+    name: service-sms
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  profiles:
+    # 配置启动环境
+    active: dev
+  main:
+    banner-mode: off # 关闭bunner
+  cloud:
+    # nacos配置
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  redis:
+    port: 6379
+    host: 192.168.6.100
+
+# 配置阿里云sms服务参数
+aliyun:
+  sms:
+    host: "http://dingxin.market.alicloudapi.com"
+    path: "/dx/sendSms"
+    method: "POST"
+    appcode: "8e45699f00ff4bdbb807664045acd813"
+    tplId: "TP1711063"

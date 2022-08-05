@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.service.edu.mapper.CourseMapper">
+<!--        List<AdminCourseItemVo> selectCourseItemVoPage(Page<AdminCourseItemVo> itemVoPage);-->
+    <select id="selectCourseItemVoPage" resultType="com.service.edu.entity.vo.AdminCourseItemVo">
+        SELECT t1.id , t1.title , t1.price,t1.lesson_num,t1.cover ,
+               t1.buy_count,t1.view_count,t1.status , t1.gmt_create,
+               t2.`name` teacher_name,
+               t3.`title` subject_parent_title,
+               t4.`title` subject_title
+        FROM edu_course t1
+                 LEFT JOIN edu_teacher t2
+                           ON t1.`teacher_id` = t2.`id`
+                 LEFT JOIN edu_subject t3
+                           ON t1.`subject_parent_id` = t3.`id`
+                 LEFT JOIN edu_subject t4
+                           ON t1.`subject_id` = t4.`id`
+    </select>
 
 </mapper>

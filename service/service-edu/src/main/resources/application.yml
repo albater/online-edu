@@ -37,6 +37,8 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     banner: false  # 取消mp的banner图标
+  mapper-locations: classpath*:com/service/edu/mapper/xml/*.xml
+
 
 # 日志配置
 logging:

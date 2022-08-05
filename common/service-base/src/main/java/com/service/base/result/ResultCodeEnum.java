@@ -58,7 +58,7 @@ public enum ResultCodeEnum {
     LOGIN_ACL(false, 28005, "没有权限"),
     SMS_SEND_ERROR(false, 28006, "短信发送失败"),
     SMS_SEND_ERROR_BUSINESS_LIMIT_CONTROL(false, 28007, "短信发送过于频繁"),
-
+    SMS_SEND_ERROR_BUSINESS_LIMIT_DAY_CONTROL(false,28008,"验证获取已超三次，无法获取"),
     DIV_ZERO_ERROR(false,30000,"除数为零异常");
 
     private Boolean success;

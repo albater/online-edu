@@ -1,6 +1,7 @@
 package com.service.edu.controller.api;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.service.base.result.R;
 import com.service.edu.entity.Teacher;
 import com.service.edu.service.TeacherService;
@@ -28,6 +29,16 @@ import java.util.List;
 public class ApiTeacherController {
     @Autowired
     private TeacherService teacherService;
+
+    //查询热门讲师
+    @GetMapping("getHotTeachers")
+    public R getHotTeachers(){
+        List<Teacher> teachers = teacherService.list(new LambdaQueryWrapper<Teacher>()
+                .select(Teacher::getId, Teacher::getAvatar, Teacher::getName)
+                .orderByDesc(Teacher::getSort)
+                .last("limit 3"));
+        return R.ok().data("items",teachers);
+    }
 
     //查询所有讲师
     @ApiOperation("查询所有教师信息")
