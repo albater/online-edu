@@ -19,5 +19,5 @@ aliyun:
   vod:
     keyId: your keyId
     keySecret: your keySecret
-    templateGroupId: f21b3793ae76241385bc9aebd0562fc5 #转码模板组id
-    workflowId: a123534e99d396a96c6f6820670a45af #工作流id
+    templateGroupId:  转码模板组id #转码模板组id
+    workflowId: 工作流id #工作流id
