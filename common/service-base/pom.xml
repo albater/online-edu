@@ -56,7 +56,7 @@
             <version>2.1.7</version>
         </dependency>
         <dependency>
-            <groupId>com.atguigu</groupId>
+            <groupId>com.deu</groupId>
             <artifactId>common-util</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
