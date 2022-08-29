@@ -1,4 +1,4 @@
-package com.service.ucenter;
+package com.service.trade;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,16 +8,16 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author alpha
- * @className: ServiceUcenterApplication
- * @date 2022/8/1 21:08
+ * @className: ServiceTradeApplication
+ * @date 2022/8/5 19:11
  * @Description
  */
 @SpringBootApplication
-@ComponentScan(basePackages = "com.service")
+@ComponentScan("com.service")
 @EnableDiscoveryClient
 @EnableFeignClients
-public class ServiceUcenterApplication {
+public class ServiceTradeApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ServiceUcenterApplication.class,args);
+        SpringApplication.run(ServiceTradeApplication.class, args);
     }
 }

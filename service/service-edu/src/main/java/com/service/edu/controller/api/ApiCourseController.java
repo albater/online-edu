@@ -1,11 +1,13 @@
 package com.service.edu.controller.api;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.service.base.dto.CourseDto;
 import com.service.base.result.R;
 import com.service.edu.entity.Course;
-import com.service.edu.entity.query.ApiCourseQuery;
-import com.service.edu.entity.vo.AdminCourseInfoVo;
+import com.service.edu.entity.Teacher;
 import com.service.edu.service.CourseService;
+import com.service.edu.service.TeacherService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,20 @@ import java.util.List;
 public class ApiCourseController {
     @Autowired
     CourseService courseService;
+    @Autowired
+    TeacherService teacherService;
+    //5.订单查询订单的课程详情
+    @GetMapping("getCourseDto/{id}")
+    public R getCourseDto(@PathVariable("id")String id){
+        Course course = courseService.getById(id);
+        //todo
+        CourseDto courseDto = new CourseDto();
+        BeanUtils.copyProperties(course,courseDto);
+        Teacher teacher = teacherService.getById(course.getTeacherId());
+        courseDto.setTeacherName(teacher.getName());
+        return R.ok().data("item",courseDto);
+    }
+
     //4、查询热门的8个课程的数据
     @GetMapping("getHotCourses")
     public R getHotCourses(){

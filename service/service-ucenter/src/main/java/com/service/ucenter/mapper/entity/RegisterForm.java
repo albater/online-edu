@@ -1,4 +1,4 @@
-package com.service.ucenter.entity;
+package com.service.ucenter.mapper.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

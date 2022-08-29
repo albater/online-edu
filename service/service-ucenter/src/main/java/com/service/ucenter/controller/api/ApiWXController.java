@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.text.ParseException;
 import java.util.Map;
 import java.util.UUID;
 
@@ -33,6 +31,7 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/api/ucenter/wx")
 public class ApiWXController {
+    //用户登录
     @GetMapping("/login")
     public String wxLogin(HttpSession session) {
         try {
@@ -57,7 +56,7 @@ public class ApiWXController {
             throw new GlobalException(ResultCodeEnum.UNKNOWN_REASON);
         }
     }
-
+    //回调方法
     @GetMapping("/callback")
     public String callback(@RequestParam("code") String code,
                            @RequestParam("state") String state,

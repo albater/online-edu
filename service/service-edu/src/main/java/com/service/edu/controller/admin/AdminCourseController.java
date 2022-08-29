@@ -1,9 +1,8 @@
 package com.service.edu.controller.admin;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.service.base.result.R;
 import com.service.edu.entity.Course;
@@ -33,6 +32,14 @@ public class AdminCourseController {
     @Autowired
     CourseService courseService;
 
+    //7.查询指定日期发布课程的数量
+    @GetMapping("getCoursePublishNum/{day}")
+    public R getCoursePublishNum(@PathVariable("day") String day) {
+        long count = courseService.count(new QueryWrapper<Course>()
+                .eq("date(publish_time)", day));
+        return R.ok().data("count", count);
+    }
+
     //6.发布课程
     @ApiOperation(value = "发布课程")
     @PutMapping("/publish/{courseId}")
@@ -49,7 +56,7 @@ public class AdminCourseController {
     @GetMapping("/getPublishInfo/{courseId}")
     public R getPublishInfo(@PathVariable("courseId") String courseId) {
         AdminCourseItemVo vo = courseService.getPublishInfo(courseId);
-        return R.ok().data("item",vo);
+        return R.ok().data("item", vo);
     }
 
     //4.根据id更新课程

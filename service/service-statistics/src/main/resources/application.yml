@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: guli-statistics
+  datasource:
+    url: jdbc:mysql://192.168.6.100:3306/guli_statistics?serverTimezone=GMT%2B8
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  profiles:
+    # 如果不配置 logback-spring.xml中的  dev的日志配置不能生效
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+        ip: 127.0.0.1   # edu服务运行的服务器ip 注册到注册中心显示的ip
+  redis:
+    host: 192.168.1.170
+    port: 6379
+    lettuce:
+      pool:
+        max-wait: -1  # redis连接不会中断 直到操作成功
+        max-idle: 8  # 空闲时最大维护的连接数
+        min-idle: 0  # 空闲时最小的连接数
+        max-active: 20 # 最大的连接数
+#    database: 0
+#    password:
+#    name:
+server:
+  port: 8180
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:com/service/*/mapper/xml/*.xml
+logging:
+  level:
+    root: info #  配置当前项目全局日志输出级别
+
+ribbon:
+  # 超时配置：
+  ConnectTimeout: 5000
+  ReadTimeout: 5000
+# 重试次数配置：
+  MaxAutoRetries: 0 # 同一实例最大重试次数，不包括首次调用，默认0
+  MaxAutoRetriesNextServer: 1 # 重试其他实例的最大重试次数，不包括首次所选的server，默认1
+feign:
+  sentinel:
+    enabled: true   # 启用feign对sentinel的支持。本质就是sentinel使用动态代理 代理feign客户端
